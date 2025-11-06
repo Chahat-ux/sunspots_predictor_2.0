@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>🌌 Sunspot Prediction - Solar Cycle Analysis</title>
+    <style>
+      /* Fallback fonts - Google Fonts may take time to load */
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+      
+      * { box-sizing: border-box; }
+      
+      body { 
+        font-family: 'Rajdhani', 'Segoe UI', 'Arial', sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        background: #0a0e27;
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+          radial-gradient(2px 2px at 60px 70px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 50px 50px, #fff, transparent),
+          radial-gradient(1px 1px at 20px 60px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.4), transparent),
+          radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+          radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.6), transparent);
+        background-size: 200px 200px, 180px 180px, 150px 150px, 220px 220px, 190px 190px, 160px 160px, 210px 210px;
+        background-position: 0 0, 40px 60px, 130px 270px, 70px 150px, 20px 300px, 150px 200px, 100px 100px;
+        animation: stars 20s linear infinite;
+        color: #E2E8F0; 
+        min-height: 100vh;
+        position: relative;
+      }
+      
+      @keyframes stars {
+        from { background-position: 0 0, 40px 60px, 130px 270px, 70px 150px, 20px 300px, 150px 200px, 100px 100px; }
+        to { background-position: -200px 200px, -140px 260px, -70px 470px, -150px 350px, -170px 500px, -10px 400px, -110px 300px; }
+      }
+      
+      header { 
+        padding: 24px 32px; 
+        background: linear-gradient(135deg, #1a1f3a 0%, #2d3561 50%, #1a1f3a 100%);
+        color: #FFD700; 
+        border-bottom: 2px solid #4A90E2;
+        box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+        animation: shine 3s infinite;
+      }
+      
+      @keyframes shine {
+        0% { left: -100%; }
+        100% { left: 100%; }
+      }
+      
+      header h1 { 
+        margin: 0; 
+        font-family: 'Orbitron', 'Arial Black', 'Arial', sans-serif; 
+        font-weight: 900; 
+        font-size: 2.5em; 
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(74, 144, 226, 0.3);
+        letter-spacing: 2px;
+      }
+      
+      header .muted { 
+        color: #B8C5D6; 
+        font-size: 1.1em;
+        margin-top: 8px;
+        font-weight: 600;
+      }
+      
+      main { 
+        padding: 32px; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        position: relative;
+        z-index: 1;
+      }
+      
+      .card { 
+        background: rgba(26, 31, 58, 0.85); 
+        border-radius: 12px; 
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(74, 144, 226, 0.2);
+        margin-bottom: 24px; 
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(74, 144, 226, 0.3);
+      }
+      
+      .card h2 { 
+        margin: 0; 
+        padding: 20px 24px; 
+        border-bottom: 2px solid rgba(74, 144, 226, 0.3);
+        font-family: 'Orbitron', 'Arial Black', 'Arial', sans-serif;
+        font-weight: 700;
+        color: #4A90E2;
+        text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        letter-spacing: 1px;
+      }
+      
+      .card .content { 
+        padding: 20px 24px; 
+      }
+      
+      img { 
+        max-width: 100%; 
+        height: auto; 
+        border: 2px solid rgba(74, 144, 226, 0.3); 
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      }
+      
+      table { 
+        width: 100%; 
+        border-collapse: collapse; 
+      }
+      
+      th, td { 
+        padding: 12px 14px; 
+        border-bottom: 1px solid rgba(74, 144, 226, 0.2); 
+        text-align: right; 
+        color: #E2E8F0;
+      }
+      
+      th:first-child, td:first-child { 
+        text-align: left; 
+      }
+      
+      th { 
+        background: rgba(74, 144, 226, 0.15); 
+        color: #FFD700;
+        font-weight: 700;
+        font-family: 'Orbitron', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        letter-spacing: 1px;
+      }
+      
+      tr:hover {
+        background: rgba(74, 144, 226, 0.1);
+        transition: background 0.3s ease;
+      }
+      
+      .muted { 
+        color: #8B9DC3; 
+      }
+      
+      .grid { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 24px; 
+      }
+      
+      @media (max-width: 900px) { 
+        .grid { grid-template-columns: 1fr; } 
+      }
+      
+      .input-form { 
+        background: rgba(26, 31, 58, 0.9); 
+        border-radius: 12px; 
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(74, 144, 226, 0.3);
+        padding: 28px; 
+        margin-bottom: 24px; 
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(74, 144, 226, 0.3);
+      }
+      
+      .input-form h2 {
+        font-family: 'Orbitron', sans-serif;
+        color: #4A90E2;
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+      }
+      
+      .form-group { 
+        display: flex; 
+        gap: 16px; 
+        align-items: center; 
+        flex-wrap: wrap; 
+      }
+      
+      .form-group label {
+        color: #E2E8F0;
+        font-weight: 600;
+        font-size: 1.1em;
+      }
+      
+      .form-group input { 
+        padding: 12px 18px; 
+        border: 2px solid rgba(74, 144, 226, 0.4); 
+        border-radius: 8px; 
+        font-size: 16px; 
+        width: 160px; 
+        background: rgba(10, 14, 39, 0.8);
+        color: #E2E8F0;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 600;
+      }
+      
+      .form-group input:focus { 
+        outline: none; 
+        border-color: #4A90E2; 
+        box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        background: rgba(10, 14, 39, 0.95);
+      }
+      
+      .form-group button { 
+        padding: 12px 28px; 
+        background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
+        color: #0a0e27; 
+        border: none; 
+        border-radius: 8px; 
+        font-size: 16px; 
+        cursor: pointer; 
+        font-weight: 700; 
+        font-family: 'Orbitron', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+        transition: all 0.3s ease;
+      }
+      
+      .form-group button:hover { 
+        background: linear-gradient(135deg, #6BB6FF 0%, #4A90E2 100%);
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.6);
+        transform: translateY(-2px);
+      }
+      
+      .prediction-result { 
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B9D 100%); 
+        color: #0a0e27; 
+        padding: 24px; 
+        border-radius: 12px; 
+        margin-top: 20px; 
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        border: 2px solid rgba(255, 215, 0, 0.5);
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4); }
+        50% { box-shadow: 0 8px 40px rgba(255, 215, 0, 0.7); }
+      }
+      
+      .prediction-result h3 { 
+        margin: 0 0 12px 0; 
+        font-size: 1.3em;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 700;
+      }
+      
+      .prediction-result .value { 
+        font-size: 3.5em; 
+        font-weight: 900; 
+        margin: 16px 0; 
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+      
+      .prediction-result .year { 
+        font-size: 1.4em; 
+        opacity: 0.9; 
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sunspot Number Prediction</h1>
+      <div class="muted">1970–{{ end_year }} • 11-Year Solar Cycle</div>
+    </header>
+    <main>
+      <div class="input-form">
+        <h2 style="margin-top: 0; margin-bottom: 16px;">Enter a Year to Predict</h2>
+        <form method="POST" action="/">
+          <div class="form-group">
+            <label for="year" style="font-weight: 600;">Year:</label>
+            <input type="number" id="year" name="year" min="1970" max="2100" 
+                   value="{{ user_year if user_year else 2030 }}" required 
+                   placeholder="e.g., 2030">
+            <button type="submit">Predict Sunspots</button>
+          </div>
+        </form>
+        {% if predicted_value is not none %}
+        <div class="prediction-result">
+          <h3>Predicted Sunspot Number for {{ user_year }}</h3>
+          <div class="value">{{ '%.1f'|format(predicted_value) }}</div>
+          <div class="year">Year: {{ user_year }}</div>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <h2>Chart (1970–{{ end_year }})</h2>
+        <div class="content">
+          <img alt="Sunspot Chart" src="data:image/png;base64,{{ plot_data }}" />
+          <p class="muted">⭐ X-axis shows 11-year solar cycle intervals. Vertical dotted lines mark cycle boundaries. Gold stars (★) indicate Solar Maximum, cyan triangles (▼) indicate Solar Minimum.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Historical Data</h2>
+          <div class="content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Sunspot Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in historical %}
+                <tr>
+                  <td>{{ row['Year'] }}</td>
+                  <td>{{ '%.1f'|format(row['Sunspot_Number']) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Predictions {% if end_year > 2024 %}(2025–{{ end_year }}){% else %}(Historical Data Only){% endif %}</h2>
+          <div class="content">
+            {% if future|length > 0 %}
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Predicted Sunspot Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in future %}
+                <tr>
+                  <td>{{ row['Year'] }}</td>
+                  <td>{{ '%.1f'|format(row['Sunspot_Number']) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <p class="muted">No predictions available. Enter a year after 2024 to see predictions.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  </html>
+
+

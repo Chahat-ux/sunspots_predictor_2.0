@@ -1,0 +1,64 @@
+================================================================================
+    SUNSPOT PREDICTION WEB APPLICATION - START HERE
+================================================================================
+
+QUICK START:
+-----------
+1. Double-click "run.bat" to start the server
+2. Wait for the message "Running on http://127.0.0.1:5000"
+3. Open your web browser
+4. Go to: http://localhost:5000
+
+That's it! The application should now be running.
+
+================================================================================
+
+IF THE PAGE DOESN'T LOAD:
+--------------------------
+1. Make sure the server is running (you should see a terminal window)
+2. Try these URLs in your browser:
+   - http://localhost:5000
+   - http://127.0.0.1:5000
+3. Check the terminal window for any error messages
+4. See TROUBLESHOOTING.md for detailed help
+
+================================================================================
+
+ALTERNATIVE START METHODS:
+--------------------------
+Method 1: Double-click run.bat (Easiest)
+
+Method 2: Command Line
+   Open PowerShell in this folder and run:
+   .venv\Scripts\python start_app.py
+
+Method 3: Direct Python
+   .venv\Scripts\python app.py
+
+================================================================================
+
+FEATURES:
+---------
+- Enter any year (1970-2100) to predict sunspot numbers
+- Beautiful space-themed interface with animated stars
+- Interactive graph showing solar cycles
+- Solar Maximum and Minimum markers clearly labeled
+- Historical data from 1970-2024
+- Predictions for future years
+
+================================================================================
+
+TO STOP THE SERVER:
+-------------------
+Press Ctrl+C in the terminal window where the server is running
+
+================================================================================
+
+NEED HELP?
+----------
+- Check TROUBLESHOOTING.md for common issues
+- Check QUICK_START.md for detailed instructions
+- Open test_page.html in your browser to test if browser works
+
+================================================================================
+
