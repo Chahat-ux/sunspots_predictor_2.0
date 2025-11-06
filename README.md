@@ -1,6 +1,12 @@
-# Sunspot Prediction Model
+# Sunspot Prediction Model 🌌
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue)](https://github.com/awaleayush777/sunspots_predictor_2.0)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.2+-green)](https://flask.palletsprojects.com/)
 
 This project predicts sunspot numbers based on historical data using machine learning techniques, accounting for the 11-year solar cycle pattern.
+
+**Repository**: https://github.com/awaleayush777/sunspots_predictor_2.0
 
 ## Features
 
@@ -13,9 +19,36 @@ This project predicts sunspot numbers based on historical data using machine lea
 
 ## Installation
 
-1. Install required packages:
+### Clone the Repository
+
+```bash
+git clone https://github.com/awaleayush777/sunspots_predictor_2.0.git
+cd sunspots_predictor_2.0
+```
+
+### Set Up Virtual Environment
+
+**Windows:**
+```bash
+py -3.11 -m venv .venv
+.venv\Scripts\activate
+```
+
+**Linux/Mac:**
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+```
+
+### Install Dependencies
+
 ```bash
 pip install -r requirements.txt
+```
+
+**Note**: This project uses Git LFS for large files. If you clone the repository, make sure Git LFS is installed:
+```bash
+git lfs install
 ```
 
 ## Usage
