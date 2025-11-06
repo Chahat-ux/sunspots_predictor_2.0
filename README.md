@@ -1,0 +1,1 @@
+# sunspots_predictor_2.0
