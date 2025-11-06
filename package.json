@@ -1,0 +1,12 @@
+{
+  "name": "sunspot-predictor",
+  "version": "1.0.0",
+  "description": "Sunspot Prediction Web Application",
+  "scripts": {
+    "build": "echo 'Build complete'"
+  },
+  "keywords": ["sunspot", "prediction", "flask", "ml"],
+  "author": "awaleayush777",
+  "license": "MIT"
+}
+
