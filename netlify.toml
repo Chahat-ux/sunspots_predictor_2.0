@@ -4,7 +4,7 @@
   publish = "."
 
 [build.environment]
-  PYTHON_VERSION = "3.11"
+  PYTHON_VERSION = "3.10.4"
   NODE_VERSION = "18"
 
 # Redirect all requests to the serverless function
